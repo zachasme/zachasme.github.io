@@ -24,18 +24,34 @@ layout: default
   </form>
 </div>
 
-<div id="app">(( message ))</div>
+<div id="app">
+  <date />
+
+  (( message ))
+  <button-counter />
+</div>
 
 <template id="clicker">
-  <button @click="count++">You clicked me {{ count }} times.</button>
+  <button @click="count++">You clicked me (( count )) times.</button>
 </template>
 
 <script type="module">
-  import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+  import { createApp, ref } from './vue.js'
+  import Date from './date.js'
 
   createApp({
     compilerOptions: {
-        delimiters: ["((","))"],
+      delimiters: ["((","))"],
+    },
+    components: {
+      Date,
+      ButtonCounter: { 
+        setup() {
+          const count = ref(0)
+          return { count }
+        },
+        template: "#clicker"
+      }
     },
     setup() {
       const message = ref('Hello Vue!')
@@ -44,6 +60,5 @@ layout: default
       }
     }
   })
-  .component({ ButtonCounter: { template: "#clicker" }})
   .mount('#app')
 </script>
