@@ -3,20 +3,6 @@ title: Barselsplanlægger
 layout: default
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
 <div class="container">
   <h1>Barselsplanlægger</h1>
 
@@ -37,3 +23,21 @@ layout: default
     </label>
   </form>
 </div>
+
+<div id="app">(( message ))</div>
+
+<script type="module">
+  import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+  createApp({
+    compilerOptions: {
+        delimiters: ["((","))"],
+    },
+    setup() {
+      const message = ref('Hello Vue!')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>
