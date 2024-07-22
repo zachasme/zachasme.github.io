@@ -26,6 +26,10 @@ layout: default
 
 <div id="app">(( message ))</div>
 
+<template id="clicker">
+  <button @click="count++">You clicked me {{ count }} times.</button>
+</template>
+
 <script type="module">
   import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 
@@ -39,5 +43,7 @@ layout: default
         message
       }
     }
-  }).mount('#app')
+  })
+  .component({ ButtonCounter: { template: "#clicker" }})
+  .mount('#app')
 </script>
