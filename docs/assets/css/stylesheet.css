@@ -1,0 +1,41 @@
+---
+---
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui;
+  font-size: calc(0.8rem + .8vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  display: inline-flex;
+  align-items: baseline;
+
+  & svg {
+    height: 1cap;
+    width: 1cap;
+    margin-inline-end: .1em;
+  }
+}
+
+main {
+  margin: 1ch;
+  max-width: 60ch;
+}
+
+li {
+  margin-top: .5em;
+}
