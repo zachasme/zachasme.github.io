@@ -21,16 +21,15 @@ layout: default
   </a>
 </p>
 
-<!--
 <h3>Blog posts</h3>
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ post.url }}">{{ post.title }}</a>.
+      <small>{{ post.date | date: "%b %-d, %Y" }}</small>
     </li>
   {% endfor %}
 </ul>
--->
 
 <h3>Hobby projects</h3>
 <ul>
@@ -43,6 +42,6 @@ layout: default
 
 <h3>Open-source contributions</h3>
 <ul>
-  <li><a href="https://github.com/rails/rails/pull/52354">basecamp/rails#52354</a>. Support SQLite3 full-text-search<!-- (<a href="{% post_url 2024-09-09-sqlite-full-text-search %}">blog post</a>)</li>-->
+  <li><a href="https://github.com/rails/rails/pull/52354">basecamp/rails#52354</a>. Support SQLite3 full-text-search
   <li><a href="https://github.com/zachasme/h3-pg">zachasme/h3-pg</a>. PostgreSQL extension for Uber's H3 Hexagonal Hierarchical Geospatial Indexing System</li>
 </ul>

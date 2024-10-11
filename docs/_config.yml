@@ -28,6 +28,11 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://za.chari.as" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  zachasme
 
+markdown: CommonMarkGhPages
+commonmark:
+  options: ["UNSAFE", "SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
+
 # Build settings
 #plugins:
 #  - jekyll-feed
