@@ -14,7 +14,7 @@ This setup will:
 - Encrypt using `gpg`
 - Upload to `S3`-compatible storage
 
-First, prepare your `S3`-compatible bucket (and configure it to expire files older than, say, 1 week1). Using [Cloudflare R2][r2], create a [new bucket][r2-bucket-new] and [API token][r2-api-tokens], then store them in your Rails credentials:
+First, prepare your `S3`-compatible bucket (and configure it to expire files older than, say, 1 week). Using [Cloudflare R2][r2], create a [new bucket][r2-bucket-new] and [API token][r2-api-tokens], then store them in your Rails credentials:
 
 ```yaml
 # rails credentials:edit
