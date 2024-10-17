@@ -1,6 +1,8 @@
 ---
 ---
 
+* { box-sizing: border-box }
+
 :root {
   color-scheme: dark;
 }
@@ -14,10 +16,8 @@ body {
 
 body {
   font-family: system-ui;
-  font-size: calc(0.8rem + .8vw);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: clamp(1rem, calc(0.8rem + .8vw), 1.5rem);
+  margin: 1rem;
 }
 
 a {
@@ -34,6 +34,7 @@ a {
 main {
   margin: 1ch;
   max-width: 60ch;
+  width: 100%;
 }
 
 li {
