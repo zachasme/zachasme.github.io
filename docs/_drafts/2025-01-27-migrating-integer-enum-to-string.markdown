@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Rails Migration Pitfalls"
-date:   2024-07-15 15:17:52 +0200
+date:   2024-01-27 11:47:00 +0200
 categories: rails
 ---
 
