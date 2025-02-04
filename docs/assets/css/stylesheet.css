@@ -47,6 +47,11 @@ pre {
   padding: 1ch;
 }
 
+h1 {
+  margin-bottom: 0;
+  & + time { margin-top: 0 }
+}
+
 .highlight pre { background-color: #272822; }
 .highlight .hll { background-color: #272822; }
 .highlight .c { color: #75715e } /* Comment */
