@@ -4,6 +4,8 @@ title:  "SQLite Daily Backups in Rails"
 permalink: /sqlite-daily-backup-in-rails
 date:   2024-09-12 09:50:00 +0200
 categories: rails
+redirect_from:
+  - /2024/09/11/sqlite-daily-backup.html
 ---
 
 This setup will:

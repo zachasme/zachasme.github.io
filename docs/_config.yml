@@ -34,8 +34,8 @@ commonmark:
   extensions: ["strikethrough", "autolink", "table", "tagfilter"]
 
 # Build settings
-#plugins:
-#  - jekyll-feed
+plugins:
+  - jekyll-redirect-from
 
 # Exclude from processing.
 # The following items will not be processed, by default.
