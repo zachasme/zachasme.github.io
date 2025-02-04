@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Daily Backup using SQLite"
-date:   2024-09-11 09:50:00 +0200
+title:  "SQLite Daily Backups in Rails"
+permalink: /sqlite-daily-backup-in-rails
+date:   2024-09-12 09:50:00 +0200
 categories: rails
 ---
-
-# Daily Backups using SQLite
 
 This setup will:
 

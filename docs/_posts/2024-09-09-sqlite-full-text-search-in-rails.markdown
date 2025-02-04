@@ -1,7 +1,8 @@
 ---
 layout: post
-title:  "SQLite Full-text Search in Rails"
-date:   2024-09-09 12:47:00 +0200
+title: "SQLite Full-text Search in Rails"
+permalink: /sqlite-full-text-search-in-rails
+date: 2024-09-09 12:47:00 +0200
 categories: rails
 ---
 
