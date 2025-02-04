@@ -19,20 +19,36 @@ Problems:
 
 ## Initial implementation
 
+Let's say you have a 
+
 ```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+  validates :stripe_customer_id, uniqueness: true
+  validates :total_paid, presence: true, comparison: { greater_than_or_equal_to: 0 }
+end
+
+# config/routes.rb
+Rails.application.routes.draw do
+  # ...
+  resource :stripe_event, only: :create
+end
+
+# app/controllers/stripe_events_controller.rb
 class StripeEventsController < ApplicationController
   protect_from_forgery except: :create
 
   before_action :set_event
 
   def create
+    object = @event.data.object
     case @event.type
     when 'customer.subscription.created'
-      Subscription.create(stripe_id: @event.data.object.id)
+      User.create(stripe_customer_id: object.customer, total_paid: 0)
     when 'invoice.paid'
-      Subscription
-        .find_by(stripe_id: @event.data.object.subscription)
-        .increment(:total_paid, by: @event.data.object.amount_paid)
+      User
+        .find_by(stripe_customer_id: object.customer)
+        .increment(:total_paid, by: object.amount_paid)
     end
 
     head :ok
@@ -112,7 +128,7 @@ class StripeEvent < ApplicationRecord
   end
 
   def process_now
-    event = Stripe::Event.construct_from(payload)
+    event = Stripe::Event.construct_from(JSON.parse(payload))
     case event.type
     when 'customer.subscription.created'
       Subscription.retrieve_from_stripe(event.data.object.id)
@@ -139,6 +155,7 @@ Using VCR and Webmock
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "test_helpers/stripe_test_helper"
 require "test_helpers/vcr_test_helper"
 
 VCR.configure do |config|
@@ -155,7 +172,7 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
-    include VcrTestHelper
+    include StripeTestHelper, VcrTestHelper
   end
 end
 
