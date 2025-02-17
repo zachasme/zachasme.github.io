@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Rails & Stripe"
+title:  "Rails & Stripe Events"
 date:   2024-01-28 19:42:00 +0200
 categories: rails
 ---
