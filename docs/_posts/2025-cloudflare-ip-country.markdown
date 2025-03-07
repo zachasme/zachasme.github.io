@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Rails & Cloudflare IP Country"
+permalink: /cloudflare-ip-country
 date:   2025-03-07 14:11:00 +0200
 categories: rails
 ---
