@@ -6,8 +6,6 @@ categories: rails
 layout: post
 ---
 
-# IP geolocation in Rails using Cloudflare
-
 If you are using Cloudflare DNS, with proxying enabled, Cloudflare will enrich requests with the ip country code.
 
 ```ruby

@@ -6,9 +6,11 @@ layout: default
 <p>Lead programmer at <a href="https://sonisto.com">Sonisto</a></p>
 <p>
   <a href="mailto:z@chari.as">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-    </svg>        
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+    </svg>
     E-mail
   </a>
   |
@@ -24,10 +26,10 @@ layout: default
 <h3>Blog posts</h3>
 <ul>
   {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>.
-      <small>{{ post.date | date: "%b %-d, %Y" }}</small>
-    </li>
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>.
+    <small>{{ post.date | date: "%b %-d, %Y" }}</small>
+  </li>
   {% endfor %}
 </ul>
 
@@ -42,6 +44,9 @@ layout: default
 
 <h3>Open-source contributions</h3>
 <ul>
+  <li><a href="https://github.com/zachasme/ruby-stripe-cli">zachasme/ruby-stripe-cli</a>. A self-contained Stripe CLI
+    executable, wrapped up in a ruby gem.
   <li><a href="https://github.com/rails/rails/pull/52354">basecamp/rails#52354</a>. Support SQLite3 full-text-search
-  <li><a href="https://github.com/zachasme/h3-pg">zachasme/h3-pg</a>. PostgreSQL extension for Uber's H3 Hexagonal Hierarchical Geospatial Indexing System</li>
+  <li><a href="https://github.com/zachasme/h3-pg">zachasme/h3-pg</a>. PostgreSQL extension for Uber's H3 Hexagonal
+    Hierarchical Geospatial Indexing System</li>
 </ul>
