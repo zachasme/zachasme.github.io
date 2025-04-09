@@ -6,13 +6,13 @@ categories: rails
 layout: post
 ---
 
-If you are using Cloudflare DNS, with proxying enabled, Cloudflare will enrich requests with the ip country code.
+When using Cloudflare DNS with proxying enabled, Cloudflare will enrich requests with the country code corresponding to the requesting ip address:
 
 ```ruby
 request.headers["CF-IPCountry"]
 ```
 
-However, this will not in development. Instead we can "fake" it using a middleware that asks cloudflare for the country of the development machine:
+Sadly this *will not work in development*. Instead, we can "fake" it using a Rack middleware that asks Cloudflare for the country of the development machine itself:
 
 ```ruby
 # lib/middleware/cloudflare_ip_country_faker.rb
@@ -31,18 +31,29 @@ class CloudflareIpCountryFaker
     @app.call(env)
   end
 end
+```
 
+Make sure to insert the middleware in your development environment:
+
+```ruby
 # config/environments/development.rb
 require "middleware/cloudflare_ip_country_faker"
 
 Rails.application.configure do
   # ...
   config.middleware.insert_before ActionDispatch::RemoteIp, CloudflareIpCountryFaker
+  Rails.backtrace_cleaner.add_silencer { |line| line =~ /lib\/middleware/ }
   # ...
 end
-
-# config/application.rb
-# ...
-config.autoload_lib(ignore: %w[assets tasks middleware])
-# ...
 ```
+
+We've added our middleware to the `Rails.backtrace_cleaner` silencer list, otherwise application errors might show up as originating from the middleware.
+
+You should also add the middleware directory to your autolib ignore list:
+
+```ruby
+# config/application.rb
+config.autoload_lib(ignore: %w[assets tasks middleware])
+```
+
+And with that we can rely on the IP country header in both development and production!

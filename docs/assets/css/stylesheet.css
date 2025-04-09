@@ -52,6 +52,12 @@ h1 {
   & + time { margin-top: 0 }
 }
 
+footer {
+  opacity: .5;
+}
+
+/* syntax highlighting */
+
 .highlight pre { background-color: #272822; }
 .highlight .hll { background-color: #272822; }
 .highlight .c { color: #75715e } /* Comment */
