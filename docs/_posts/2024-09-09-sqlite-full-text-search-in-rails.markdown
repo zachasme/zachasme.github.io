@@ -8,7 +8,7 @@ redirect_from:
   - /2024/09/09/sqlite-full-text-search.html
 ---
 
-Rails recently landed support for SQLite3 full-text search ([PR #52354](https://github.com/rails/rails/pull/52354)). Let's walk through how you can add a search index to an existing table of messages (TL;DR skip to the <a href="#message-model">finished model</a>).
+Rails recently landed support for SQLite3 full-text search (and I [did the work](https://github.com/rails/rails/pull/52354)). Let's walk through how you can add a search index to an existing table of messages (TL;DR skip to the <a href="#message-model">finished model</a>).
 
 Assuming we already have the following table:
 
