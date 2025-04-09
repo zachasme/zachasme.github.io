@@ -10,30 +10,35 @@ Setting up Stripe webhooks in development usually requires installing [Stripe CL
 
 It works by wrapping up the platform-specific Stripe CLI executable, authenticating using your `Stripe.api_key`, and running the `stripe listen` command as a puma plugin.
 
-## Installation
+Let's see how it works.
 
-Install the gem and add to the application's Gemfile by executing:
+## Stripe CLI as a Puma plugin
 
-```sh
-bundle add ruby-stripe-cli --group development
-```
-
-Make sure `Stripe.api_key` is set, e.g. in `config/initializers/stripe.rb`:
+Running `stripe listen` as a separate process will force you to depend on something like `foreman`, unless we run it together with Puma as a plugin:
 
 ```ruby
-Stripe.api_key = "sk_test_..." # preferably :dig'ed out of Rails.application.credentials
-```
+# lib/puma/plugin/stripe.rb
+Puma::Plugin.create do
+  def start(launcher)
+    launcher.events.on_booted do
+      fork do
+        exec "stripe listen --api-key #{Stripe.api_key} --forward-to http://localhost:3000/stripe_event"
+      end
+    end
+  end
+end
 
-Add `plugin :stripe` to `puma.rb` configuration:
-
-```ruby
-# Run stripe cli only in development.
+# config/puma.rb
 plugin :stripe if ENV["RAILS_ENV"] == "development"
 ```
 
-By default, events will be forwarded to `/stripe_events`, this can be configured using `stripe_forward_to "/stripe/webhook"` in `puma.rb`.
+While we're at it, let's grab the signing key so we can run the same verification routine we do in production:
 
-You can grab your *signing secret* using `StripeCLI.signing_secret`. For example:
+```ruby
+secret = `stripe listen --api-key "#{Stripe.api_key}" --print-secret`.chomp
+```
+
+This is how our webhook handler might look:
 
 ```ruby
 class StripeEventsController < ActionController::API
@@ -50,19 +55,21 @@ class StripeEventsController < ActionController::API
   end
 
   private
-
     def event
       @event ||= Stripe::Webhook.construct_event(
         request.body.read,
         request.headers["stripe-signature"],
-        StripeCLI.signing_secret(Stripe.api_key)
+        `stripe listen --api-key "#{Stripe.api_key}" --print-secret`.chomp
       )
     rescue => error
       logger.error error
       head :bad_request
     end
 end
-
 ```
 
-And with that, `bin/setup` will download, authenticate and run Stripe CLI as part of your development server.
+## Stripe CLI as a Ruby gem
+
+So far so good, however, we still depend on developers installing [Stripe CLI](https://docs.stripe.com/stripe-cli) on their system. What if we could install it as a regular ruby gem? That's exactly what I've done in [`ruby-stripe-cli`](https://github.com/zachasme/ruby-stripe-cli).
+
+With that, `bin/setup` will download, authenticate and run Stripe CLI as part of your development server.
