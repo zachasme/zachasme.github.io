@@ -6,7 +6,7 @@ categories: rails
 layout: post
 ---
 
-Setting up Stripe webhooks in development usually requires installing [Stripe CLI](https://docs.stripe.com/stripe-cli) as a system dependency, authenticating against the right Stripe account and running it in a separate process. But not if you use [`ruby-stripe-cli`](https://github.com/zachasme/ruby-stripe-cli)!
+Setting up Stripe webhooks in development usually requires installing [Stripe CLI](https://docs.stripe.com/stripe-cli) as a system dependency, authenticating against the right Stripe account and running it in a separate process. But not if you use [`stripe-cli-ruby`](https://github.com/zachasme/stripe-cli-ruby)!
 
 It works by wrapping up the platform-specific Stripe CLI executable, authenticating using your `Stripe.api_key`, and running the `stripe listen` command as a puma plugin.
 
@@ -70,6 +70,6 @@ end
 
 ## Stripe CLI as a Ruby gem
 
-So far so good, however, we still depend on developers installing [Stripe CLI](https://docs.stripe.com/stripe-cli) on their system. What if we could install it as a regular ruby gem? That's exactly what I've done in [`ruby-stripe-cli`](https://github.com/zachasme/ruby-stripe-cli).
+So far so good, however, we still depend on developers installing [Stripe CLI](https://docs.stripe.com/stripe-cli) on their system. What if we could install it as a regular ruby gem? That's exactly what I've done in [`stripe-cli-ruby`](https://github.com/zachasme/stripe-cli-ruby).
 
 With that, `bin/setup` will download, authenticate and run Stripe CLI as part of your development server.
