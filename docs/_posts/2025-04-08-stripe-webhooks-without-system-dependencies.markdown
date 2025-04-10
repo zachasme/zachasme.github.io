@@ -70,6 +70,6 @@ end
 
 ## Stripe CLI as a Ruby gem
 
-So far so good, however, we still depend on developers installing [Stripe CLI](https://docs.stripe.com/stripe-cli) on their system. What if we could install it as a regular ruby gem? That's exactly what I've done in [`stripe-cli-ruby`](https://github.com/zachasme/stripe-cli-ruby).
+So far so good, however, we still depend on developers installing [Stripe CLI](https://docs.stripe.com/stripe-cli) on their system. What if we could install it as a regular ruby gem? That's exactly what I've done in [`stripe-cli-ruby`](https://github.com/zachasme/stripe-cli-ruby), which includes the puma plugin for good measure.
 
 With that, `bin/setup` will download, authenticate and run Stripe CLI as part of your development server.
