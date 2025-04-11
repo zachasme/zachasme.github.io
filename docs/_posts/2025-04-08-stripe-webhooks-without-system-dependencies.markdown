@@ -6,9 +6,9 @@ categories: rails
 layout: post
 ---
 
-Setting up Stripe webhooks in development usually requires installing [Stripe CLI](https://docs.stripe.com/stripe-cli) as a system dependency, authenticating against the right Stripe account and running it in a separate process. But not if you use [`stripe-cli-ruby`](https://github.com/zachasme/stripe-cli-ruby)!
+Setting up Stripe webhooks in development usually requires installing [Stripe CLI](https://docs.stripe.com/stripe-cli) as a system dependency, authenticating against the right Stripe account and running it in a separate process. Alternatively, you might use a forwarding service like `ngrok`, but that also requires additional setup for new development environments (not to mention you will recieve *all* events across *all* developers for the associated Stripe test-mode/sandbox webhook).
 
-It works by wrapping up the platform-specific Stripe CLI executable, authenticating using your `Stripe.api_key`, and running the `stripe listen` command as a puma plugin.
+But not if you use [`stripe-cli-ruby`](https://github.com/zachasme/stripe-cli-ruby)! It works by wrapping up the platform-specific Stripe CLI executable, authenticating using your `Stripe.api_key`, and running the `stripe listen` command as a puma plugin.
 
 Let's see how it works.
 
